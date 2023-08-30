@@ -1,0 +1,17 @@
+<html>
+<head>
+    <title>Blog</title>
+</head>
+<header>
+    <h2>Django Boys Blog</h2>
+</header>
+{% for post in posts %}
+<article>
+    {% if post.published_date %}
+    <span>{{ post.published_date }}</span>
+    {% endif %}
+    <h3>{{ post.title }}</h3>
+    <p>{{  post.text }}</p>
+</article>
+{% endfor %}
+</html>
