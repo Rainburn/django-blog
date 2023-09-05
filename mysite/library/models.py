@@ -13,13 +13,14 @@ class Blog(models.Model):
 class Author(models.Model):
     name = models.CharField(max_length=200)
     email = models.EmailField()
+    password = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.name
 
 
 class Entry(models.Model):
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, null=True, blank=True)
     headline = models.CharField(max_length=200)
     body_text = models.TextField()
     pub_date = models.DateTimeField()

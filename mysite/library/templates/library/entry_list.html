@@ -1,0 +1,29 @@
+{% extends "library/base.html" %}
+{% block content %}
+{% for entry in entries %}
+<article class="post">
+    <aside class="actions">
+        {% if user.is_authenticated %}
+        <a class="btn btn-secondary" href="{% url 'entry_edit' pk=entry.pk %}">
+          {% include './icons/pencil-fill.svg' %}
+        </a>
+        {% endif %}
+    </aside>
+    {% if entry.published_date %}
+        <time class="date">
+            {{ entry.pub_date }}
+        </time>
+    {% endif %}
+    <h2>{{ entry.headline }}</h2>
+    <p>{{ entry.body_text|linebreaksbr }}</p>
+    <div>
+        <h4>{{ entry.authors.all | join:" | " }}</h4>
+    </div>
+    <div>
+        <div>Comments - {{ entry.number_of_comments }}</div>
+        <div>Pingbacks - {{ entry.number_of_pingbacks }}</div>
+        <div>Rating - {{ entry.rating }}</div>
+    </div>
+</article>
+{% endfor %}
+{% endblock %}

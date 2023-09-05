@@ -18,11 +18,12 @@ class BlogAdmin(admin.ModelAdmin):
 
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ["name", "email"]
-    fields = ["name", "email"]
+    fields = ["name", "email", "password"]
 
 
 class EntryAdmin(admin.ModelAdmin):
-    fields = ["headline", "body_text", "pub_date", "number_of_comments", "number_of_pingbacks", "rating"]
+    list_display = ["headline", "blog"]
+    fields = ["blog", "headline", "body_text", "pub_date", "number_of_comments", "number_of_pingbacks", "rating"]
     inlines = [AuthorInline]
 
 admin.site.register(Blog, BlogAdmin)
